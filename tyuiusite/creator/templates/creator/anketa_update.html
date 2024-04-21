@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+{% block title %}Создатель{% endblock %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Создатель</a></li>
+{% endblock head-links %}
+{% block content %}
+<div>
+    <h1>Форма по обновлению записи</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.anketa_title }}</br>
+        <button class="btn btn-success" type="submit">Обновить анкету</button>
+</div>
+{% endblock content %}

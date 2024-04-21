@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+{% block title %}Создатель{% endblock %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Создатель</a></li>
+{% endblock head-links %}
+{% block content %}
+<div>
+    <h1>Форма по обновлению вопроса</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.question }}</br>
+        {{ form.cat }}</br>
+        <button class="btn btn-success" type="submit">Обновить вопрос</button>
+</div>
+{% endblock content %}

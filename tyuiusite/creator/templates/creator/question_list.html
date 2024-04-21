@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+{% block title %}Создатель{% endblock %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Создатель</a></li>
+{% endblock head-links %}
+{% block content %}
+    {% for qu in question %}
+        <div class="alert alert-warning">
+            <h4>Вопрос:{{qu.question}}</h4>
+            <a href="{% url 'creator:answer-list' qu.cat_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a>
+            <a href="{% url 'creator:question-update' qu.cat_id qu.id%}" class="btn btn-warning">Редактировать</a>
+            <a href="{% url 'creator:question-delete' qu.cat_id qu.id%}" class="btn btn-danger">Удалить</a>
+        </div>
+    {% endfor %}
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="#" class="btn btn-secondary">Добавить</a>
+    </div>
+{% endblock content %}

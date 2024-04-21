@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+{% block title %}Создатель{% endblock %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Создатель</a></li>
+{% endblock head-links %}
+{% block content %}
+<div class="features">
+	<table class="table">
+		<thead>
+		  <tr>
+			<th scope="col">Заголовок:</th>
+			<th scope="col">Дата создания:</th>
+			<th scope="col">Автор:</th>
+			<th scope="col">Действия:</th>
+		  </tr>
+		</thead>
+		<tbody>
+		{% for ankety in getlist %}
+			<tr>
+				<td>{{ ankety.anketa_title }}</td>
+                <td>{{ ankety.pub_date }}</td>
+                <td>{{ user.get_username }}</td>
+				<td>
+					<a href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a>
+					<a href="{% url 'creator:list-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a>
+					<a href="{% url 'creator:list-delete' ankety.pk%}" class="btn btn-danger">Удалить</i></a>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	  </table>
+	  <div class="d-grid gap-2 col-6 mx-auto">
+		<a href="{% url 'creator:list-create'%}" class="btn btn-secondary">Добавить</a>
+	  </div>
+</div>
+{% endblock content %}

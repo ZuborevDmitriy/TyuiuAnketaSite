@@ -1,3 +1,6 @@
 from django.contrib import admin
+from . models import Anketa, Questions, Answers
 
-# Register your models here.
+admin.site.register(Anketa)
+admin.site.register(Questions)
+admin.site.register(Answers)
