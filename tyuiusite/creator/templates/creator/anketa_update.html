@@ -11,7 +11,7 @@
     <h1>Форма по обновлению записи</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.anketa_title }}</br>
+        {{ form.as_p }}</br>
         <button class="btn btn-success" type="submit">Обновить анкету</button>
 </div>
 {% endblock content %}

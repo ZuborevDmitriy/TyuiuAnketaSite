@@ -14,7 +14,7 @@ class AnketaForm(ModelForm):
 class QuestionForm(ModelForm):
     class Meta:
         model = Questions
-        fields = ["question", "cat"]
+        fields = ["question", "ank"]
         widgets = {
             "question": TextInput(attrs={
                 'class':'form-control',
@@ -24,7 +24,7 @@ class QuestionForm(ModelForm):
 class AnswerForm(ModelForm):
     class Meta:
         model = Answers
-        fields = ["answer", "dog"]
+        fields = ["answer"]
         widgets = {
             "answer": TextInput(attrs={
                 'class':'form-control',

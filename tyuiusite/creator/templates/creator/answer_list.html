@@ -10,9 +10,11 @@
     {% for an in answer %}
         <div class="alert alert-warning">
             <h4>Ответ:{{an.answer}}</h4>
+            {% comment %} <a href="{% url 'creator:answer-update' an.ank_id an.quest_id an.id%}" class="btn btn-warning">Редактировать</a> {% endcomment %}
+            {% comment %} <a href="{% url 'creator:answer-delete' an.ank_id an.quest_id an.id%}" class="btn btn-danger">Удалить</a> {% endcomment %}
         </div>
     {% endfor %}
     <div class="d-grid gap-2 col-6 mx-auto">
-		<a href="{% url 'creator:answer-create' %}" class="btn btn-secondary">Добавить</a>
-	  </div>
+		{% comment %} <a href="{% url 'creator:answer-create' %}" class="btn btn-secondary">Добавить</a> {% endcomment %}
+	</div>
 {% endblock content %}

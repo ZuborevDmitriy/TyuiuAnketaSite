@@ -8,10 +8,10 @@
 {% endblock head-links %}
 {% block content %}
 <div>
-    <h1>Форма по добавлению ответа</h1>
+    <h1>Форма по обновлению ответа</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}</br>
-        <button class="btn btn-success" type="submit">Добавить ответ</button>
+        <button class="btn btn-success" type="submit">Обновить ответ</button>
 </div>
 {% endblock content %}

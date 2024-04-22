@@ -24,16 +24,16 @@
                 <td>{{ ankety.pub_date }}</td>
                 <td>{{ user.get_username }}</td>
 				<td>
-					<a href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a>
-					<a href="{% url 'creator:list-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a>
-					<a href="{% url 'creator:list-delete' ankety.pk%}" class="btn btn-danger">Удалить</i></a>
+					{% comment %} <a href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a> {% endcomment %}
+					{% comment %} <a href="{% url 'creator:anketa-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a> {% endcomment %}
+					{% comment %} <a href="{% url 'creator:anketa-delete' ankety.pk%}" class="btn btn-danger">Удалить</i></a> {% endcomment %}
 				</td>
 			</tr>
 		{% endfor %}
 		</tbody>
 	  </table>
 	  <div class="d-grid gap-2 col-6 mx-auto">
-		<a href="{% url 'creator:list-create'%}" class="btn btn-secondary">Добавить</a>
+		{% comment %} <a href="{% url 'creator:anketa-create'%}" class="btn btn-secondary">Добавить</a> {% endcomment %}
 	  </div>
 </div>
 {% endblock content %}

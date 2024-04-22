@@ -11,6 +11,7 @@ class Anketa(models.Model):
         verbose_name_plural="Анкеты"
         
 class Questions(models.Model):
+    ank = models.ForeignKey(Anketa, on_delete=models.CASCADE)
     question = models.CharField('Вопрос', max_length = 200)
     def __str__(self):
         return self.question
@@ -19,6 +20,8 @@ class Questions(models.Model):
         verbose_name_plural="Вопросы"
 
 class Answers(models.Model):
+    ank = models.ForeignKey(Anketa, on_delete=models.CASCADE)
+    quest = models.ForeignKey(Questions, on_delete=models.CASCADE)
     answer = models.CharField('Ответ', max_length = 200)
     def __str__(self):
         return self.answer

@@ -10,12 +10,12 @@
     {% for qu in question %}
         <div class="alert alert-warning">
             <h4>Вопрос:{{qu.question}}</h4>
-            <a href="{% url 'creator:answer-list' qu.cat_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a>
-            <a href="{% url 'creator:question-update' qu.cat_id qu.id%}" class="btn btn-warning">Редактировать</a>
-            <a href="{% url 'creator:question-delete' qu.cat_id qu.id%}" class="btn btn-danger">Удалить</a>
+            {% comment %} <a href="{% url 'creator:answer-list' qu.ank_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a> {% endcomment %}
+            {% comment %} <a href="{% url 'creator:question-update' qu.ank_id%}" class="btn btn-warning">Редактировать</a> {% endcomment %}
+            {% comment %} <a href="{% url 'creator:question-delete' qu.ank_id qu.id%}" class="btn btn-danger">Удалить</a> {% endcomment %}
         </div>
     {% endfor %}
     <div class="d-grid gap-2 col-6 mx-auto">
-        <a href="#" class="btn btn-secondary">Добавить</a>
+        {% comment %} <a href="{% url 'creator:question-create'%}" class="btn btn-secondary">Добавить</a> {% endcomment %}
     </div>
 {% endblock content %}
