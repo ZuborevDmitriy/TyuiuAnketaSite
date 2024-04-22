@@ -12,8 +12,9 @@
 		<thead>
 		  <tr>
 			<th scope="col">Заголовок:</th>
-			<th scope="col">Дата создания:</th>
-			<th scope="col">Автор:</th>
+			<th scope="col">Срок сдачи:</th>
+			<th scope="col">Преподаватель:</th>
+            <th scope="col">Кол-во вопросов:</th>
 			<th scope="col">Действия:</th>
 		  </tr>
 		</thead>
@@ -21,19 +22,18 @@
 		{% for ankety in getlist %}
 			<tr>
 				<td>{{ ankety.anketa_title }}</td>
-                <td>{{ ankety.pub_date }}</td>
-                <td>{{ user.get_username }}</td>
-				<td>
-					<a href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a>
-					<a href="{% url 'creator:anketa-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a>
-					<a href="{% url 'creator:anketa-delete' ankety.pk%}" class="btn btn-danger">Удалить</i></a>
-				</td>
+                <td></td>
+                <td></td>
+				<td></td>
+                <td>
+                    <a href="{% url 'student:question-list' ankety.id %}" class="btn btn-warning">Пройти</a>
+                </td>
 			</tr>
 		{% endfor %}
 		</tbody>
 	  </table>
 	  <div class="d-grid gap-2 col-6 mx-auto">
-		<a href="{% url 'creator:anketa-create'%}" class="btn btn-secondary">Добавить</a>
+		{% comment %} <a href="{% url 'creator:anketa-create'%}" class="btn btn-secondary">Добавить</a> {% endcomment %}
 	  </div>
 </div>
 {% endblock content %}
