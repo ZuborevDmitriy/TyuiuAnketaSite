@@ -27,7 +27,7 @@ class DeleteAnketa(DeleteView):
     success_url = reverse_lazy('creator:list')
     
 def question_list(request, pk):
-    question = Questions.objects.filter(cat_id = pk)
+    question = Questions.objects.filter(cat_id=pk)
     return render(request, "creator/question_list.html", {'question': question})
 
 class CreateQuestion(CreateView):
@@ -47,17 +47,13 @@ class DeleteQuestion(DeleteView):
     template_name = "creator/question_delete.html"
     success_url = reverse_lazy('creator:list')
 
-def answer_list(request, pk):
-    answer = Answers.objects.filter(dog_id = pk)
+def answer_list(request, pk, question_id):
+    answer = Answers.objects.filter(dog_id=question_id)
     return render(request, "creator/answer_list.html", {'answer': answer})
 
 class CreateAnswer(CreateView):
     model = Answers
     form_class = AnswerForm
     template_name = "creator/answer_create.html"
-    success_url = reverse_lazy('creator:question-list')
-
-class DeleteAnswer(DeleteView):
-    model = Answers
-    template_name = "creator/answer_delete.html"
-    success_url = reverse_lazy('creator:question-list')
+    success_url = reverse_lazy('creator:list')
+    context_object_name = "createanswer"
