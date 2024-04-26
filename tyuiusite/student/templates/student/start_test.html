@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Студент</a></li>
+{% endblock head-links %}
+{% block content %}
+    {% for qu in questions %}
+        <div class="alert alert-warning">
+            <h4>{{qu.question}}</h4>
+            <a href="{% url 'student:get-answer' qu.ank_id qu.id%}" class="btn btn-warning">Ответить</a>
+        </div>
+    {% endfor %}
+{% endblock content %}

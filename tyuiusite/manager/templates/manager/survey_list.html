@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+{% block title %}Создатель{% endblock %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Организатор</a></li>
+{% endblock head-links %}
+{% block content %}
+<div class="features">
+	<table class="table">
+		<thead>
+		  <tr>
+			<th scope="col">Заголовок:</th>
+			<th scope="col">Время начала:</th>
+			<th scope="col">Время завершения:</th>
+			<th scope="col">Кол-во участников:</th>
+			<th scope="col">Действия:</th>
+		  </tr>
+		</thead>
+		<tbody>
+		{% for survey in surveylist %}
+			<tr>
+				<td width="400px">{{ survey.survey_title }}</td>
+                <td width="200px">{{ survey.start_time }}</td>
+                <td width="200px">{{ survey.end_time }}</td>
+                <td width="200px">{{ survey.students.count }}</td>
+                <td>
+                    <a href="#" class="btn btn-warning">Просмотреть</a>
+                    <a href="{% url 'manager:tests-update' survey.id %}" class="btn btn-warning">Редактировать</a>
+                    <a href="{% url 'manager:tests-delete' survey.id %}" class="btn btn-danger">Удалить</a>
+                </td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	  </table>
+	  <div class="d-grid gap-2 col-6 mx-auto">
+		<a href="{% url 'manager:survey-create'%}" class="btn btn-secondary">Добавить</a>
+	  </div>
+</div>
+{% endblock content %}

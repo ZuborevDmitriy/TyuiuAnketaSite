@@ -55,6 +55,7 @@ table{
     color: rgb(255, 255, 255);
     border: 16px solid rgb(180, 180, 180);
     border-radius: 20px;
+    max-width: 1450px;
 }
 div{
     text-align: center;

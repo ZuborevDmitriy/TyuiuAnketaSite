@@ -1,14 +1,20 @@
-from django.shortcuts import render
-from creator.models import Anketa, Questions, Answers
+from django.shortcuts import redirect, render
+from manager.models import Survey
+from . forms import AnswerForm
+from creator.models import Answers, Questions, Anketa
 
 def list(request):
-    getlist = Anketa.objects.all()
+    current_user = request.user
+    user_id = current_user.id
+    getlist = Survey.objects.filter(students = user_id)  
     return render(request, "student/list.html", {"getlist": getlist})
 
-def question_list(request, pk):
-    question = Questions.objects.filter(ank_id=pk)
-    return render(request, "student/question_list.html", {'question': question})
+def questions_list(request, test_id):
+    questions = Questions.objects.filter(ank_id = test_id)
+    return render(request, "student/start_test.html", {'questions':questions})
 
-def answer_list(request,pk,question_id):
-    answer = Answers.objects.filter(quest_id=question_id)
-    return render(request, "student/answer_list.html", {'answer': answer})
+def answer_list(request, test_id, answer_id):
+    answers = Answers.objects.filter(quest_id = test_id)
+    return render(request, "student/answer_list.html", {'answer':answers})
+
+# def submit_answers(request, answer_id):

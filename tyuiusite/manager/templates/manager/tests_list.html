@@ -4,13 +4,12 @@
     <li><a href='#'>Главная</a></li>
     <li><a href='#'>Мои тесты</a></li>
     <li><a href='#'>Все тесты</a></li>
-    <li><a href='#'>Роль: Создатель</a></li>
+    <li><a href='#'>Роль: Организатор</a></li>
 {% endblock head-links %}
 {% block content %}
-    {% for qu in question %}
+    {% for test in tests %}
         <div class="alert alert-warning">
-            <h4>Вопрос:{{qu.question}}</h4>
-            <a href="{% url 'student:answer-list' qu.ank_id qu.id%}" class="btn btn-warning">Ответить</a>
+            <h4>Вопрос:{{test.question}}</h4>
         </div>
     {% endfor %}
 {% endblock content %}

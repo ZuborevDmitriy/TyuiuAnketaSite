@@ -12,7 +12,7 @@ class LoginUser(LoginView):
     extra_context = {'title': 'Авторизация'}
     
     def get_success_url(self):
-        return reverse_lazy('users:choise')
+        return reverse_lazy('creator:anketa-list')
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
@@ -21,6 +21,3 @@ class RegisterUser(CreateView):
     
     def get_success_url(self):
         return reverse_lazy('users:login')
-    
-def choise(request):
-    return render(request, 'users/choise.html')

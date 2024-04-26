@@ -22,7 +22,7 @@
 			<tr>
 				<td>{{ ankety.anketa_title }}</td>
                 <td>{{ ankety.pub_date }}</td>
-                <td>{{ user.get_username }}</td>
+                <td>Автор</td>
 				<td>
 					<a href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a>
 					<a href="{% url 'creator:anketa-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a>
