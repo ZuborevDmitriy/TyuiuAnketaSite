@@ -15,9 +15,9 @@
             <a href="{% url 'creator:question-delete' qu.ank_id qu.id%}" class="btn btn-danger">Удалить</a>
         </div>
     {% endfor %}
-    {% for qu in questions|slice:"0:1" %}
+    {% for ankety in getlist|slice:"0:1" %}
         <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% url 'creator:question-create' qu.ank_id%}" class="btn btn-secondary">Добавить</a>
+            <a href="{% url 'creator:question-create' ankety.pk%}" class="btn btn-secondary">Добавить</a>
         </div>
     {% endfor %}
 {% endblock content %}

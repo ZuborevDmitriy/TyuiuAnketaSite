@@ -14,9 +14,9 @@
             <a href="{% url 'creator:answer-delete' an.ank_id an.quest_id an.id%}" class="btn btn-danger">Удалить</a>
         </div>
     {% endfor %}
-    {% for an in answer|slice:"0:1" %}
+    {% for qu in questions|slice:"0:1" %}
         <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% url 'creator:answer-create' an.ank_id an.quest_id%}" class="btn btn-secondary">Добавить</a>
+            <a href="{% url 'creator:answer-create' qu.ank_id qu.id%}" class="btn btn-secondary">Добавить</a>
         </div>
     {% endfor %}
 {% endblock content %}

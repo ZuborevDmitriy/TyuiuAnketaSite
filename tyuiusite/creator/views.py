@@ -28,8 +28,9 @@ class DeleteAnketa(DeleteView):
     success_url = reverse_lazy('creator:anketa-list')
     
 def question_list(request, pk):
+    getlist = Anketa.objects.filter(pk=pk)
     question = Questions.objects.filter(ank_id=pk)
-    return render(request, "creator/question_list.html", {'questions': question})
+    return render(request, "creator/question_list.html", {'questions': question, 'getlist': getlist})
 
 class CreateQuestion(CreateView):
     model = Questions
@@ -56,8 +57,9 @@ class DeleteQuestion(DeleteView):
     pk_url_kwarg = 'question_id'
 
 def answer_list(request,pk,question_id):
+    question = Questions.objects.filter(pk=question_id)
     answer = Answers.objects.filter(quest_id=question_id)
-    return render(request, "creator/answer_list.html", {'answer': answer})
+    return render(request, "creator/answer_list.html", {'answer': answer, 'questions': question})
 
 class CreateAnswer(CreateView):
     model = Answers
