@@ -1,5 +1,6 @@
 from . models import Anketa, Questions, Answers
 from django.forms import ModelForm, TextInput, Select
+from django import forms
 
 class AnketaForm(ModelForm):
     class Meta:
@@ -14,7 +15,7 @@ class AnketaForm(ModelForm):
 class QuestionForm(ModelForm):
     class Meta:
         model = Questions
-        fields = ["question", "ank"]
+        fields = ["question"]
         widgets = {
             "question": TextInput(attrs={
                 'class':'form-control',

@@ -33,10 +33,13 @@ def question_list(request, pk):
 
 class CreateQuestion(CreateView):
     model = Questions
-    fields="__all__"
+    form_class = QuestionForm
     template_name = "creator/question_create.html"
     success_url = reverse_lazy('creator:anketa-list')
     pk_url_kwarg = 'question_id'
+    def form_valid(self, form):
+        form.instance.ank_id = self.kwargs['pk']
+        return super().form_valid(form)
 
 class UpdateQuestion(UpdateView):
     model = Questions
@@ -58,10 +61,14 @@ def answer_list(request,pk,question_id):
 
 class CreateAnswer(CreateView):
     model = Answers
-    fields="__all__"
+    form_class = AnswerForm
     template_name = "creator/answer_create.html"
     success_url = reverse_lazy('creator:anketa-list')
     pk_url_kwarg = 'answer_id'
+    def form_valid(self, form):
+        form.instance.ank_id = self.kwargs['pk']
+        form.instance.quest_id = self.kwargs['question_id']
+        return super().form_valid(form)
 
 class UpdateAnswer(UpdateView):
     model = Answers
