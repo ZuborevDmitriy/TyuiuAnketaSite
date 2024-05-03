@@ -10,11 +10,11 @@ def list(request):
     return render(request, "student/list.html", {"getlist": getlist})
 
 def questions_list(request, test_id):
-    questions = Questions.objects.filter(ank_id = test_id)
+    questions = Questions.objects.all()#filter(ank_id = test_id)
     return render(request, "student/start_test.html", {'questions':questions})
 
 def answer_list(request, test_id, answer_id):
-    answers = Answers.objects.filter(quest_id = test_id)
+    answers = Answers.objects.all()#filter(quest_id = test_id)
     return render(request, "student/answer_list.html", {'answer':answers})
 
 # def submit_answers(request, answer_id):

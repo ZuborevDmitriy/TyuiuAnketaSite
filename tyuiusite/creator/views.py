@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
@@ -29,7 +29,7 @@ class DeleteAnketa(DeleteView):
     
 def question_list(request, pk):
     question = Questions.objects.filter(ank_id=pk)
-    return render(request, "creator/question_list.html", {'question': question})
+    return render(request, "creator/question_list.html", {'questions': question})
 
 class CreateQuestion(CreateView):
     model = Questions
