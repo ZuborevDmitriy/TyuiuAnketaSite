@@ -5,6 +5,7 @@ class StudentAnswer(models.Model):
     question = models.ForeignKey(Questions, on_delete=models.CASCADE)
     answer_text = models.CharField('Ответ', max_length = 200)
     date_answered = models.DateTimeField(auto_now=True)
+    right_answer = models.BooleanField(default=False)
     def __str__(self):
         return self.answer_text
     class Meta:

@@ -23,16 +23,17 @@ def answer_list(request, test_id, answ_id):
 
 def submit_answer(request, test_id, answ_id):
     if request.method == "POST":
-        student_answer = StudentAnswerForm(request.POST.get('answer_text'))
+        form = StudentAnswerForm(request.POST)
+        student_answer = request.POST.get('answer_text')
         answer = Answers.objects.get(quest_id=answ_id)
         correct_answer = answer.answer
-        if student_answer == correct_answer:
-            return HttpResponse("Верно")
+        if student_answer.upper() == correct_answer.upper():
+            print("hi")
         else:
-            return HttpResponse("Неверно")
-    else:
-        form = StudentAnswerForm()
-        data = {
-            'form':form
-        }
-        return render(request, 'student/submit_answer.html', data)
+            print('hello')
+        form.save()
+    form = StudentAnswerForm()
+    data = {
+        'form':form
+    }
+    return render(request, 'student/submit_answer.html', data)
