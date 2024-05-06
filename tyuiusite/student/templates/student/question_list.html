@@ -9,7 +9,7 @@
     {% for qu in questions %}
         <div class="alert alert-warning">
             <h4>{{qu.question}}</h4>
-            <a href="{% url 'student:get-answer' qu.ank_id qu.id%}" class="btn btn-warning">Ответить</a>
+            {% comment %} <a href="{% url 'student:get-answer' qu.id%}" class="btn btn-warning">Ответить</a> {% endcomment %}
         </div>
     {% endfor %}
 {% endblock content %}
