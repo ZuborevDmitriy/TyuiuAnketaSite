@@ -1,9 +1,13 @@
 from django.db import models
-from creator.models import Questions
+from django.dispatch import receiver
+from creator.models import Questions, Answers
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
 class StudentAnswer(models.Model):
-    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
-    answer_text = models.CharField('Ответ', max_length = 200)
+    question = models.ForeignKey(Questions, on_delete=models.CASCADE, null=True)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer_text = models.CharField('Ответ', max_length = 200, null=True)
     date_answered = models.DateTimeField(auto_now=True)
     right_answer = models.BooleanField(default=False)
     def __str__(self):

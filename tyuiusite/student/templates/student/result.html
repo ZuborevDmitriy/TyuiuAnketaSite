@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Студент</a></li>
+{% endblock head-links %}
+{% block content %}
+    <div class="alert alert-warning">
+        <h4>Правильных ответов: {{correct_answer_count}} из: {{question_count}}</h4>
+    </div>
+{% endblock content %}

@@ -9,7 +9,12 @@
     {% for qu in questions %}
         <div class="alert alert-warning">
             <h4>{{qu.question}}</h4>
-            {% comment %} <a href="{% url 'student:get-answer' qu.id%}" class="btn btn-warning">Ответить</a> {% endcomment %}
+            <a href="{% url 'student:get-answer' qu.ank_id qu.id%}" class="btn btn-warning">Ответить</a>
+        </div>
+    {% endfor %}
+    {% for ankety in getlist|slice:"0:1" %}
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="{% url 'student:get-result' ankety.pk%}" class="btn btn-success">Подвести итог</a>
         </div>
     {% endfor %}
 {% endblock content %}
