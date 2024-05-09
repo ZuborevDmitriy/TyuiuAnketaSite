@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% block title %}Создатель{% endblock %}
+{% block head-links %}
+    <li><a href='#'>Главная</a></li>
+    <li><a href='#'>Мои тесты</a></li>
+    <li><a href='#'>Все тесты</a></li>
+    <li><a href='#'>Роль: Организатор</a></li>
+{% endblock head-links %}
+{% block content %}
+    {% for student in students_username %}
+        <div class="alert alert-warning">
+            {{student}}
+        </div>
+    {% endfor %}
+{% endblock content %}

@@ -12,9 +12,9 @@
             <a href="{% url 'student:get-answer' qu.ank_id qu.id%}" class="btn btn-warning">Ответить</a>
         </div>
     {% endfor %}
-    {% for ankety in getlist|slice:"0:1" %}
+    {% for qu in questions|slice:"0:1" %}
         <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% url 'student:get-result' ankety.pk%}" class="btn btn-success">Подвести итог</a>
+            <a href="{% url 'student:get-result' qu.ank_id%}" class="btn btn-success">Подвести итог</a>
         </div>
     {% endfor %}
 {% endblock content %}

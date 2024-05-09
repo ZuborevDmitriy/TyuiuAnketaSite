@@ -8,5 +8,11 @@
 {% block content %}
     <div class="alert alert-warning">
         <h4>Правильных ответов: {{correct_answer_count}} из: {{question_count}}</h4>
+        <h4>Результат: {{percent}}%</h4>
     </div>
+    {% for test in getlist %}
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="{% url 'student:send-result' test.id %}" class="btn btn-success">Завершить</a>
+        </div>
+    {% endfor %}
 {% endblock content %}

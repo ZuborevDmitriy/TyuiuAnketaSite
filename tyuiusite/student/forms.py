@@ -4,7 +4,7 @@ from .models import StudentAnswer
 class StudentAnswerForm(ModelForm):
     class Meta:
         model = StudentAnswer
-        fields = ['question','answer_text']
+        fields = ['answer_text']
         widgets = {
             "answer_text": TextInput(attrs={
                 'class': 'form-control',
