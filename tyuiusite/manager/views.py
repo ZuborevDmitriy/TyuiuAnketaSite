@@ -40,3 +40,5 @@ def test_result_view(request, pk):
     if any(item in students_username for item in students_name):
         students_username=[x for x in students_username if x not in students_name]
         return render(request, "manager/test_result.html", {'students':students, 'students_username':students_username})
+    else:
+        return render(request, "manager/test_result.html", {'students_username':students_username})

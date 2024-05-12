@@ -16,8 +16,9 @@ def list(request):
     return render(request, "student/list.html", {"getlist": getlist})
 
 def questions_list(request, test_id):
-    questions = Questions.objects.filter(ank_id=test_id)
-    return render(request, "student/question_list.html", {'questions':questions})
+    survey_id = Survey.objects.filter(id=test_id).values_list('test', flat=True).distinct()
+    questions = Questions.objects.filter(ank_id__in=survey_id)
+    return render(request, "student/question_list.html", {'questions':questions, 'survey':survey})
 
 def answer_list(request, test_id, answ_id):
     answers = Answers.objects.get(quest_id=answ_id)

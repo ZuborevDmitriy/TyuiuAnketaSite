@@ -2,7 +2,7 @@
 {% block title %}Организатор{% endblock %}
 {% block head-links %}
 <li><a href="/">Главная</a></li>
-<li><a href="{% url 'manager:survey-list' %}">Тесты</a></li>
+<li><a href="{% url 'manager:survey-list' %}">Опросы</a></li>
 <li style="color:white">Роль: Организатор</li>
 <li style="color:white">Пользователь: {{request.user}}</li>
 <li>
@@ -15,7 +15,7 @@
 {% block content %}
 	<div class="features">
 		{% if surveylist%}	
-		<h1 style="margin-top:100px">Список тестов:</h1>
+		<h1 style="margin-top:100px">Список опросов:</h1>
 			<table>
 				<tr>
 					<thead>
@@ -46,7 +46,7 @@
 				<a href="{% url 'manager:survey-create'%}" class="create">Добавить</a>
 			</div>
 		{% else %}
-			<h1 style="margin-top:300px">У вас нет тестов</h1>
+			<h1 style="margin-top:300px">У вас нет опросов</h1>
 			<div class="d-grid gap-2 col-6 mx-auto">
 				<a href="{% url 'manager:survey-create'%}" class="create">Добавить</a>
 			</div>

@@ -2,7 +2,7 @@
 {% block title %}Организатор{% endblock %}
 {% block head-links %}
 <li><a href="/">Главная</a></li>
-<li><a href="{% url 'manager:survey-list' %}">Тесты</a></li>
+<li><a href="{% url 'manager:survey-list' %}">Опросы</a></li>
 <li style="color:white">Роль: Организатор</li>
 <li style="color:white">Пользователь: {{request.user}}</li>
 <li>
@@ -14,7 +14,7 @@
 {% endblock head-links %}
 {% block content %}
 <div>
-    <h1 style="margin-top:200px">Удалить тест?</h1>
+    <h1 style="margin-top:200px">Удалить опрос?</h1>
     <form class="add" method="post">
         {% csrf_token %}
         <input class="delete" value="Удалить" type="submit">
