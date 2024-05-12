@@ -17,20 +17,20 @@ class CreateSurvey(CreateView):
     template_name = "manager/survey_create.html"
     success_url = reverse_lazy('manager:survey-list')
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.survey_author = self.request.user.username
         return super().form_valid(form)
 
 class UpdateSurvey(UpdateView):
     model = Survey
     form_class = SurveyForm
     template_name = "manager/survey_update.html"
-    success_url = reverse_lazy('manager:survey-update')
+    success_url = reverse_lazy('manager:survey-list')
     
 class DeleteSurvey(DeleteView):
     model = Survey
     fields="__all__"
     template_name = "manager/survey_delete.html"
-    success_url = reverse_lazy('manager:survey-delete')
+    success_url = reverse_lazy('manager:survey-list')
     
 def test_result_view(request, pk):
     students = StudentResult.objects.filter(test_id=pk)

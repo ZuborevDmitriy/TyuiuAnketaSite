@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from . models import Anketa, Questions, Answers
-from . forms import QuestionForm, AnswerForm
+from . forms import QuestionForm, AnswerForm, AnketaForm
 
 def list(request):
     getlist = Anketa.objects.all()
@@ -10,16 +10,16 @@ def list(request):
 
 class CreateAnketa(CreateView):
     model = Anketa
-    fields="__all__"
+    form_class = AnketaForm
     template_name = "creator/anketa_create.html"
     success_url = reverse_lazy('creator:anketa-list')
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.anketa_author = self.request.user.username
         return super().form_valid(form)
 
 class UpdateAnketa(UpdateView):
     model = Anketa
-    fields="__all__"
+    form_class = AnketaForm
     template_name = "creator/anketa_update.html"
     success_url = reverse_lazy('creator:anketa-list')
 

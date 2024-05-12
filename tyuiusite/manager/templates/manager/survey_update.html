@@ -2,7 +2,7 @@
 {% block title %}Создатель{% endblock %}
 {% block head-links %}
 <li><a href="/">Главная</a></li>
-<li><a href="{% url 'creator:anketa-list' %}">Тесты</a></li>
+<li><a href="{% url 'manager:survey-list' %}">Тесты</a></li>
 <li style="color:white">Роль: Организатор</li>
 <li style="color:white">Пользователь: {{request.user}}</li>
 <li>

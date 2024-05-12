@@ -1,10 +1,16 @@
 {% extends "main/base.html" %}
 {% block title %}Создатель{% endblock %}
 {% block head-links %}
-    <li><a href='#'>Главная</a></li>
-    <li><a href='#'>Мои тесты</a></li>
-    <li><a href='#'>Все тесты</a></li>
-    <li><a href='#'>Роль: Студент</a></li>
+<li><a href="/">Главная</a></li>
+<li><a href="{% url 'student:tests-list' %}">Тесты</a></li>
+<li style="color:white">Роль: Создатель</li>
+<li style="color:white">Пользователь: {{request.user}}</li>
+<li>
+	<form style="margin-left:500px;margin-top:-32px" method="post" action="{% url 'users:logout' %}">
+		{% csrf_token %}
+		<button class="logout" type="submit">Выйти</button>
+	</form>
+</li>
 {% endblock head-links %}
 {% block content %}
 <div class="features">
@@ -17,7 +23,6 @@
 			<th scope="col">Время начала:</th>
 			<th scope="col">Время завершения:</th>
 			<th scope="col">Преподаватель:</th>
-            <th scope="col">Кол-во вопросов:</th>
 			<th scope="col">Действия:</th>
 		  </tr>
 		</thead>
@@ -27,10 +32,9 @@
 				<td width="400px">{{ opros.survey_title }}</td>
                 <td width="200px">{{ opros.start_time }}</td>
                 <td width="200px">{{ opros.end_time }}</td>
-                <td width="250px"></td>
-				<td></td>
-                <td>
-                    <a href="{% url 'student:start-test' opros.id%}" class="btn btn-warning">Пройти</a>
+                <td width="250px">{{ opros.survey_author }}</td>
+                <td width="100px">
+                    <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'student:start-test' opros.id%}" class="btn btn-warning">Пройти</a>
                 </td>
 			</tr>
 		{% endfor %}

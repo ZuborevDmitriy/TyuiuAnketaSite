@@ -6,6 +6,7 @@ from creator.models import Answers, Questions, Anketa
 from .forms import StudentAnswerForm
 from django.utils import timezone
 from django.contrib import messages
+from django.urls import reverse, reverse_lazy
 
 def list(request):
     current_user = request.user
@@ -32,6 +33,7 @@ def submit_answer(request, test_id, answ_id):
         student_answer_text = request.POST.get("answer_text")
         answer = get_object_or_404(Answers, quest_id=answ_id)
         correct_answer = answer.answer
+        dynamic_url = f'http://127.0.0.1:8000/student/list/{test_id}'
         if student_answer_text.upper() == correct_answer.upper():
             student_answer = StudentAnswer.objects.create(
                 test_id = test_id,
@@ -40,7 +42,6 @@ def submit_answer(request, test_id, answ_id):
                 answer_text=student_answer_text,
                 right_answer=True
             )
-            print(answer_count)
             student_answer.save()
         else:
             student_answer = StudentAnswer.objects.create(
@@ -51,6 +52,7 @@ def submit_answer(request, test_id, answ_id):
                 right_answer=False
             )
             student_answer.save()
+        return redirect(dynamic_url)
     form = StudentAnswerForm()
     data = {
         'form':form
