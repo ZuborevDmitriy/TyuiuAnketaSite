@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from . models import Anketa, Questions, Answers
 from . forms import QuestionForm, AnswerForm, AnketaForm
+from django.contrib.auth.decorators import user_passes_test
+
+# @user_passes_test(lambda user: user.groups.filter(name='Creator').exists(), login_url='users:login')
+# def creator_view(request):
+#     return redirect('creator:anketa-list')
 
 def list(request):
     getlist = Anketa.objects.all()
