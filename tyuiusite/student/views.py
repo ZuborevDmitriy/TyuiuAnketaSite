@@ -78,6 +78,7 @@ def send_result(request, test_id):
     student_result = StudentResult.objects.create(
         test_id = test_id,
         student = current_user,
+        student_name = current_user.username,
         result = percent
     )
     student_result.save()

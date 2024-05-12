@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 
 class Anketa(models.Model):
     anketa_title = models.CharField('Заголовок', max_length = 200)

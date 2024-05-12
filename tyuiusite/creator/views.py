@@ -1,9 +1,8 @@
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from . models import Anketa, Questions, Answers
-from . forms import AnketaForm, QuestionForm, AnswerForm
+from . forms import QuestionForm, AnswerForm
 
 def list(request):
     getlist = Anketa.objects.all()
@@ -36,7 +35,8 @@ class CreateQuestion(CreateView):
     model = Questions
     form_class = QuestionForm
     template_name = "creator/question_create.html"
-    success_url = reverse_lazy('creator:anketa-list')
+    def get_success_url(self):
+        return reverse("creator:question-list", kwargs={'pk': self.kwargs['pk']})
     pk_url_kwarg = 'question_id'
     def form_valid(self, form):
         form.instance.ank_id = self.kwargs['pk']
@@ -46,14 +46,16 @@ class UpdateQuestion(UpdateView):
     model = Questions
     fields="__all__"
     template_name = "creator/question_update.html"
-    success_url = reverse_lazy('creator:anketa-list')
+    def get_success_url(self):
+        return reverse("creator:question-list", kwargs={'pk': self.kwargs['pk']})
     pk_url_kwarg = 'question_id'
 
 class DeleteQuestion(DeleteView):
     model = Questions
     fields="__all__"
     template_name = "creator/question_delete.html"
-    success_url = reverse_lazy('creator:anketa-list')
+    def get_success_url(self):
+        return reverse("creator:question-list", kwargs={'pk': self.kwargs['pk']})
     pk_url_kwarg = 'question_id'
 
 def answer_list(request,pk,question_id):
@@ -65,7 +67,8 @@ class CreateAnswer(CreateView):
     model = Answers
     form_class = AnswerForm
     template_name = "creator/answer_create.html"
-    success_url = reverse_lazy('creator:anketa-list')
+    def get_success_url(self):
+        return reverse("creator:answer-list", kwargs={'pk': self.kwargs['pk'],'question_id': self.kwargs['question_id']})
     pk_url_kwarg = 'answer_id'
     def form_valid(self, form):
         form.instance.ank_id = self.kwargs['pk']
@@ -76,12 +79,14 @@ class UpdateAnswer(UpdateView):
     model = Answers
     fields="__all__"
     template_name = "creator/answer_update.html"
-    success_url = reverse_lazy('creator:anketa-list')
+    def get_success_url(self):
+        return reverse("creator:answer-list", kwargs={'pk': self.kwargs['pk'],'question_id': self.kwargs['question_id']})
     pk_url_kwarg = 'answer_id'
 
 class DeleteAnswer(DeleteView):
     model = Answers
     fields="__all__"
     template_name = "creator/answer_delete.html"
-    success_url = reverse_lazy('creator:anketa-list')
+    def get_success_url(self):
+        return reverse("creator:answer-list", kwargs={'pk': self.kwargs['pk'],'question_id': self.kwargs['question_id']})
     pk_url_kwarg = 'answer_id'

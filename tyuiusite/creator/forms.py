@@ -1,16 +1,5 @@
 from . models import Anketa, Questions, Answers
-from django.forms import ModelForm, TextInput, Select
-from django import forms
-
-class AnketaForm(ModelForm):
-    class Meta:
-        model = Anketa
-        fields = ["anketa_title"]
-        widgets = {
-            "anketa_title": TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Заголовок анкеты'
-            })}
+from django.forms import ModelForm, TextInput
 
 class QuestionForm(ModelForm):
     class Meta:

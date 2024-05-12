@@ -3,12 +3,23 @@
 {% block title %}Регистрация{% endblock  %}
 
 {% block content %}
-    <div class="features">
-        <h1>Регистрация</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}<br>
-            <button class="btn btn-success" type="submit">Зарегистрироваться</button>
-        </form>
-    </div>
+    <h1>Регистрация аккаунта:</h1>
+        <div class="container">
+            <form method="post" class="contact-form">
+                {% csrf_token %}
+                <label style="color:white;">Псевдоним:</label>
+                {{form.username}}
+                <label style="color:white;">E-MAIL:</label>
+                {{form.email}}
+                <label style="color:white;">Имя:</label>
+                {{form.first_name}}
+                <label style="color:white;">Фамилия:</label>
+                {{form.last_name}}
+                <label style="color:white;">Пароль:</label>
+                {{form.password1}}
+                <label style="color:white;">Подтвердите ароль:</label>
+                {{form.password2}}
+                <input class="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ" type="submit">
+            </form>
+        </div>
 {% endblock  %}

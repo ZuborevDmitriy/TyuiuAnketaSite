@@ -8,11 +8,8 @@ class Survey(models.Model):
     survey_title = models.CharField("Заголовок опроса", max_length=100)
     test = models.ManyToManyField(Anketa, verbose_name="Тесты")
     students = models.ManyToManyField(Users, verbose_name="Студенты")
-    start_time = models.DateTimeField(null=True, blank=True, verbose_name="Время начала")
-    end_time = models.DateTimeField(null=True, blank=True, verbose_name="Время завершения")
-    def is_active(self):
-        now=timezone.now()
-        return self.start_time<=now<=self.end_time
+    start_time = models.DateTimeField(verbose_name="Время начала")
+    end_time = models.DateTimeField(verbose_name="Время завершения")
     class Meta:
         verbose_name = "Опрос"
         verbose_name_plural="Опросы"

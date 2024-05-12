@@ -4,25 +4,23 @@ from django.forms import ModelForm, TextInput, Select, DateInput, TimeInput, Dat
 class SurveyForm(ModelForm):
     class Meta:
         model = Survey
-        fields = ["survey_title","test","students","start_time","end_time"]
+        fields = ['survey_title','test','students','start_time','end_time']
         widgets = {
-            "survey_title": TextInput(attrs={
-                'class':'form-control',
-                'placeholder':'Заголовок опроса'
+            'survey_title':TextInput(attrs={
+                'class':'form-control'
             }),
-            "test": Select(attrs={
-                'class':'form-control',
-                'type':"choise"
+            'test':SelectMultiple(attrs={
+                'class':'form-control'
             }),
-            "students": SelectMultiple(attrs={
-                'class':'form-select'
+            'students':SelectMultiple(attrs={
+                'class':'form-control'
             }),
-            "start_time": DateTimeInput(attrs={
+            'start_time':DateTimeInput(attrs={
                 'class':'form-control',
-                'type':"datetime-local"
-                
+                'type':'datetime-local'
             }),
-            "end_time": DateTimeInput(attrs={
+            'end_time':DateTimeInput(attrs={
                 'class':'form-control',
-                'type':"datetime-local"
-            })}
+                'type':'datetime-local'
+            }),
+        }

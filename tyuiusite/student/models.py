@@ -21,9 +21,8 @@ class StudentAnswer(models.Model):
 class StudentResult(models.Model):
     test = models.ForeignKey(Anketa, on_delete=models.CASCADE, null=True)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
+    student_name=models.CharField('Имя пользователя', max_length = 200, null=True)
     result = models.IntegerField()
-    def __str__(self):
-        return self.student
     class Meta:
         verbose_name = "Результат теста"
         verbose_name_plural = "Результаты тестов"

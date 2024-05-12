@@ -4,7 +4,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from . models import Survey
 from . forms import SurveyForm
 from creator.models import Answers, Questions, Anketa
-from student.models import StudentAnswer
+from student.models import StudentAnswer, StudentResult
 from django.contrib.auth.models import User
 
 def survey_list(request):
@@ -30,6 +30,9 @@ class DeleteSurvey(DeleteView):
     success_url = reverse_lazy('manager:survey-delete')
     
 def test_result_view(request, pk):
-    students = Survey.objects.filter(pk=pk).values_list('students', flat=True).distinct()
-    students_username = User.objects.filter(id__in=students)
-    return render(request, "manager/test_result.html", {'students_username':students_username})
+    students = StudentResult.objects.filter(test_id=pk)
+    students_username=[]
+    if not students.exists():
+        pupils = Survey.objects.filter(pk=pk).values_list('students', flat=True).distinct()
+        students_username = User.objects.filter(id__in=pupils)
+    return render(request, "manager/test_result.html", {'students':students, 'student_username':students_username})

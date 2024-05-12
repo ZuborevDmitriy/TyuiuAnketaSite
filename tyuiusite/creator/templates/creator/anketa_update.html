@@ -1,17 +1,23 @@
 {% extends "main/base.html" %}
 {% block title %}Создатель{% endblock %}
 {% block head-links %}
-    <li><a href='#'>Главная</a></li>
-    <li><a href='#'>Мои тесты</a></li>
-    <li><a href='#'>Все тесты</a></li>
-    <li><a href='#'>Роль: Создатель</a></li>
+<li><a href="/">Главная</a></li>
+<li><a href="{% url 'creator:anketa-list' %}">Тесты</a></li>
+<li style="color:white">Роль: Создатель</li>
+<li style="color:white">Пользователь: {{request.user}}</li>
+<li>
+	<form style="margin-left:500px;margin-top:-32px" method="post" action="{% url 'users:logout' %}">
+		{% csrf_token %}
+		<button class="logout" type="submit">Выйти</button>
+	</form>
+</li>
 {% endblock head-links %}
 {% block content %}
 <div>
-    <h1>Форма по обновлению записи</h1>
-    <form method="post">
+    <h1 style="margin-top:100px">Форма по обновлению записи</h1>
+    <form class="add" method="post">
         {% csrf_token %}
         {{ form.as_p }}</br>
-        <button class="btn btn-success" type="submit">Обновить анкету</button>
+        <input class="submit" value="Обновить анкету" type="submit">
 </div>
 {% endblock content %}

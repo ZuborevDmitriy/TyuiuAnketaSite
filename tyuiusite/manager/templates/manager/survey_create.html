@@ -1,27 +1,36 @@
 {% extends "main/base.html" %}
 {% block title %}Создатель{% endblock %}
 {% block head-links %}
-    <li><a href='#'>Главная</a></li>
-    <li><a href='#'>Мои тесты</a></li>
-    <li><a href='#'>Все тесты</a></li>
-    <li><a href='#'>Роль: Организатор</a></li>
+<li><a href="/">Главная</a></li>
+<li><a href="{% url 'creator:anketa-list' %}">Тесты</a></li>
+<li style="color:white">Роль: Организатор</li>
+<li style="color:white">Пользователь: {{request.user}}</li>
+<li>
+	<form style="margin-left:520px;margin-top:-32px;padding-right:10px" method="post" action="{% url 'users:logout' %}">
+		{% csrf_token %}
+		<button class="logout" type="submit">Выйти</button>
+	</form>
+</li>
 {% endblock head-links %}
 {% block content %}
-<div>
+<div style="margin-top:30px;">
     <h1>Форма по добавлению опроса</h1>
-    <form method="post">
+    <form class="add" method="post">
         {% csrf_token %}
+        <h4>Введите заголовок:</h4>
         {{ form.survey_title }}</br>
-        <h4>Выберите тест</h4>
-        {{ form.test }}</br>
-        <h4>Выберите участников</h4>
+        <h4>Выберите тест:</h4>
+        <ul class="form-select">
+            <li class="list-group-item">{{ form.test }}</li>
+        </ul>
+        <h4>Выберите участников:</h4>
         <ul class="form-select">
             <option selected>Зажмите ctrl, чтобы выбрать несколько участников</option>
             <li class="list-group-item">{{ form.students }}</li>
         </ul>
-        <h4>Выберите дату начала</h4>
+        <h4>Выберите дату начала:</h4>
         {{ form.start_time }}</br>
-        <h4>Выберите дату завершения</h4>
+        <h4>Выберите дату завершения:</h4>
         {{ form.end_time }}</br>
         <button class="btn btn-success" type="submit">Добавить анкету</button>
 </div>

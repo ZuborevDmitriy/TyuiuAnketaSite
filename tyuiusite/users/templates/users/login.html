@@ -1,14 +1,17 @@
 {% extends "main/base.html" %}
 
-{% block title %}Регистрация{% endblock  %}
+{% block title %}Войти{% endblock  %}
 
 {% block content %}
-    <div class="features">
-        <h1>Регистрация</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}<br>
-            <button class="btn btn-success" type="submit">Войти</button>
-        </form>
-    </div>
+</br></br></br><h1>Войти в аккаунт:</h1></br></br>
+        <div class="container">
+            <form method="post" class="contact-form">
+                {% csrf_token %}
+                <label style="color:white;">Псевдоним:</label>
+                {{form.username}}
+                <label style="color:white;">Пароль:</label>
+                {{form.password}}
+                <input class="submit" value="ВОЙТИ" type="submit">
+            </form>
+        </div>
 {% endblock  %}

@@ -1,23 +1,38 @@
 {% extends "main/base.html" %}
 {% block title %}Создатель{% endblock %}
 {% block head-links %}
-    <li><a href='#'>Главная</a></li>
-    <li><a href='#'>Мои тесты</a></li>
-    <li><a href='#'>Все тесты</a></li>
-    <li><a href='#'>Роль: Создатель</a></li>
+<li><a href="/">Главная</a></li>
+<li><a href="{% url 'creator:anketa-list' %}">Тесты</a></li>
+<li style="color:white">Роль: Создатель</li>
+<li style="color:white">Пользователь: {{request.user}}</li>
+<li>
+	<form style="margin-left:500px;margin-top:-32px" method="post" action="{% url 'users:logout' %}">
+		{% csrf_token %}
+		<button class="logout" type="submit">Выйти</button>
+	</form>
+</li>
 {% endblock head-links %}
 {% block content %}
-    {% for qu in questions %}
-        <div class="alert alert-warning">
-            <h4>Вопрос:{{qu.question}}</h4>
-            <a href="{% url 'creator:answer-list' qu.ank_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a>
-            <a href="{% url 'creator:question-update' qu.ank_id qu.id%}" class="btn btn-warning">Редактировать</a>
-            <a href="{% url 'creator:question-delete' qu.ank_id qu.id%}" class="btn btn-danger">Удалить</a>
-        </div>
-    {% endfor %}
-    {% for ankety in getlist|slice:"0:1" %}
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% url 'creator:question-create' ankety.pk%}" class="btn btn-secondary">Добавить</a>
-        </div>
-    {% endfor %}
+    {% if questions %}
+        {% for qu in questions %}
+            <div class="alert alert-warning">
+                <h4>Вопрос:{{qu.question}}</h4>
+                <a href="{% url 'creator:answer-list' qu.ank_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a>
+                <a href="{% url 'creator:question-update' qu.ank_id qu.id%}" class="btn btn-warning">Редактировать</a>
+                <a href="{% url 'creator:question-delete' qu.ank_id qu.id%}" class="btn btn-danger">Удалить</a>
+            </div>
+        {% endfor %}
+        {% for ankety in getlist|slice:"0:1" %}
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="{% url 'creator:question-create' ankety.pk%}" class="create">Добавить</a>
+            </div>
+        {% endfor %}
+    {% else%}
+        <h1 style="margin-top:300px">У вас нет вопросов</h1>
+        {% for ankety in getlist|slice:"0:1" %}
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="{% url 'creator:question-create' ankety.pk%}" class="create">Добавить</a>
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endblock content %}
