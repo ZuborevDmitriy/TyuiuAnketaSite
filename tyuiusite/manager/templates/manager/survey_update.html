@@ -13,22 +13,25 @@
 </li>
 {% endblock head-links %}
 {% block content %}
-<div>
-    <h1>Форма по обновлению опроса</h1>
-    <form method="post">
+<div style="margin-top:20px;">
+    <h1>Форма по обновлению опроса:</h1>
+    <form style="margin-top:30px;" class="add" method="post">
         {% csrf_token %}
+        <h4>Введите заголовок:</h4>
         {{ form.survey_title }}</br>
-        <h4>Выберите тест</h4>
-        {{ form.test }}</br>
-        <h4>Выберите участников</h4>
+        <h4>Выберите тест:</h4>
+        <ul class="form-select">
+            <li class="list-group-item">{{ form.test }}</li>
+        </ul>
+        <h4>Выберите участников:</h4>
         <ul class="form-select">
             <option selected>Зажмите ctrl, чтобы выбрать несколько участников</option>
             <li class="list-group-item">{{ form.students }}</li>
         </ul>
-        <h4>Выберите дату начала</h4>
+        <h4>Выберите дату начала:</h4>
         {{ form.start_time }}</br>
-        <h4>Выберите дату завершения</h4>
+        <h4>Выберите дату завершения:</h4>
         {{ form.end_time }}</br>
-        <button class="btn btn-success" type="submit">Обновить анкету</button>
+        <input class="submit" value="Обновить опрос" type="submit">
 </div>
 {% endblock content %}

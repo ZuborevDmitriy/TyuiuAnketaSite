@@ -2,11 +2,14 @@ from django.db import models
 from creator.models import Anketa
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 Users=get_user_model()
 class Survey(models.Model):
     survey_title = models.CharField("Заголовок опроса", max_length=100)
     test = models.ManyToManyField(Anketa, verbose_name="Тесты")
+    author = models.ForeignKey(User, verbose_name='Преподаватель', blank=True, null=True, on_delete=models.CASCADE)
+    question_number = models.IntegerField()
     students = models.ManyToManyField(Users, verbose_name="Студенты")
     start_time = models.DateTimeField(verbose_name="Время начала")
     end_time = models.DateTimeField(verbose_name="Время завершения")

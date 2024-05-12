@@ -14,8 +14,9 @@
 {% endblock head-links %}
 {% block content %}
 <div>
-    <h1>Форма по удалению опроса</h1>
-    <form method="post">
-        <button class="btn btn-danger" type="submit">Удалить анкету</button>
+    <h1 style="margin-top:200px">Удалить тест?</h1>
+    <form class="add" method="post">
+        {% csrf_token %}
+        <input class="delete" value="Удалить" type="submit">
 </div>
 {% endblock content %}

@@ -13,9 +13,9 @@
 </li>
 {% endblock head-links %}
 {% block content %}
-<div style="margin-top:30px;">
-    <h1>Форма по добавлению опроса</h1>
-    <form class="add" method="post">
+<div style="margin-top:20px;">
+    <h1>Форма по добавлению опроса:</h1>
+    <form style="margin-top:30px;" class="add" method="post">
         {% csrf_token %}
         <h4>Введите заголовок:</h4>
         {{ form.survey_title }}</br>
@@ -32,6 +32,6 @@
         {{ form.start_time }}</br>
         <h4>Выберите дату завершения:</h4>
         {{ form.end_time }}</br>
-        <button class="btn btn-success" type="submit">Добавить анкету</button>
+        <input class="submit" value="Добавить опрос" type="submit">
 </div>
 {% endblock content %}

@@ -14,20 +14,21 @@
 {% endblock head-links %}
 {% block content %}
     {% if answer %}
+        {% for qu in questions %}
+            <h1 style="margin:auto;margin-top:100px;width:1200px">Ответ к вопросу:{{qu}}</h1></br></br></br>
+        {% endfor %}
         {% for an in answer %}
-            <div class="alert alert-warning">
+            <div style="background-color:rgb(0, 100, 140);border-color:rgb(0, 100, 140);color:white;" class="alert alert-warning">
                 <h4>Ответ:{{an.answer}}</h4>
-                <a href="{% url 'creator:answer-update' an.ank_id an.quest_id an.id%}" class="btn btn-warning">Редактировать</a>
-                <a href="{% url 'creator:answer-delete' an.ank_id an.quest_id an.id%}" class="btn btn-danger">Удалить</a>
+                <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:answer-update' an.ank_id an.quest_id an.id%}" class="btn btn-warning">Редактировать</a>
+                <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:answer-delete' an.ank_id an.quest_id an.id%}" class="btn btn-danger">Удалить</a>
             </div>
-            {% endfor %}
-            {% for qu in questions|slice:"0:1" %}
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="{% url 'creator:answer-create' qu.ank_id qu.id%}" class="create">Добавить</a>
-            </div>
-            {% endfor %}
+        {% endfor %}
     {% else %}
-        <h1 style="margin-top:300px">У вас нет ответов</h1>
+        {% for qu in questions %}
+            <h1 style="margin:auto;margin-top:100px;width:1200px">Ответ к вопросу:{{qu}}</h1></br></br></br>
+        {% endfor %}
+        <h1 style="margin-top:100px">У вас нет ответов</h1>
         {% for qu in questions|slice:"0:1" %}
         <div class="d-grid gap-2 col-6 mx-auto">
             <a href="{% url 'creator:answer-create' qu.ank_id qu.id%}" class="create">Добавить</a>

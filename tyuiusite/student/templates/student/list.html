@@ -8,6 +8,8 @@
 {% endblock head-links %}
 {% block content %}
 <div class="features">
+	{% if getlist %}
+	<h1 style="margin-top:100px">Список тестов для выполнения:</h1>
 	<table>
 		<thead>
 		  <tr>
@@ -34,5 +36,8 @@
 		{% endfor %}
 		</tbody>
 	  </table>
+	  {% else %}
+		<h1 style="margin-top:300px">Тесты для выполнения отсутствуют</h1>
+	  {% endif %}
 </div>
 {% endblock content %}

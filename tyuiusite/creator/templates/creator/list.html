@@ -32,9 +32,9 @@
 						<td>{{ ankety.pub_date }}</td>
 						<td>Автор</td>
 						<td>
-							<a href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a>
-							<a href="{% url 'creator:anketa-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a>
-							<a href="{% url 'creator:anketa-delete' ankety.pk%}" class="btn btn-danger">Удалить</i></a>
+							<a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:question-list' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-arrow-right"></i></a>
+							<a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:anketa-update' ankety.pk%}" class="btn btn-warning"><i class="fa-solid fa-pen-nib"></i></a>
+							<a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:anketa-delete' ankety.pk%}" class="btn btn-danger">Удалить</i></a>
 						</td>
 					</tr>
 				{% endfor %}

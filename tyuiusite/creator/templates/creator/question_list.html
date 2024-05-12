@@ -14,12 +14,13 @@
 {% endblock head-links %}
 {% block content %}
     {% if questions %}
+        <h1 style="margin:auto;margin-top:100px;width:660px">Список вопросов:</h1></br></br></br>
         {% for qu in questions %}
-            <div class="alert alert-warning">
+            <div style="background-color:rgb(0, 100, 140);border-color:rgb(0, 100, 140);color:white;" class="alert alert-warning">
                 <h4>Вопрос:{{qu.question}}</h4>
-                <a href="{% url 'creator:answer-list' qu.ank_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a>
-                <a href="{% url 'creator:question-update' qu.ank_id qu.id%}" class="btn btn-warning">Редактировать</a>
-                <a href="{% url 'creator:question-delete' qu.ank_id qu.id%}" class="btn btn-danger">Удалить</a>
+                <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:answer-list' qu.ank_id qu.id%}" class="btn btn-warning">Просмотреть ответ</a>
+                <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:question-update' qu.ank_id qu.id%}" class="btn btn-warning">Редактировать</a>
+                <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:question-delete' qu.ank_id qu.id%}" class="btn btn-danger">Удалить</a>
             </div>
         {% endfor %}
         {% for ankety in getlist|slice:"0:1" %}

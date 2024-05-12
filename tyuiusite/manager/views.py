@@ -16,6 +16,9 @@ class CreateSurvey(CreateView):
     form_class = SurveyForm
     template_name = "manager/survey_create.html"
     success_url = reverse_lazy('manager:survey-list')
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class UpdateSurvey(UpdateView):
     model = Survey
@@ -31,8 +34,9 @@ class DeleteSurvey(DeleteView):
     
 def test_result_view(request, pk):
     students = StudentResult.objects.filter(test_id=pk)
-    students_username=[]
-    if not students.exists():
-        pupils = Survey.objects.filter(pk=pk).values_list('students', flat=True).distinct()
-        students_username = User.objects.filter(id__in=pupils)
-    return render(request, "manager/test_result.html", {'students':students, 'student_username':students_username})
+    students_name = StudentResult.objects.filter(test_id=pk).values_list('student_name', flat=True).distinct()
+    pupils = Survey.objects.filter(pk=pk).values_list('students', flat=True).distinct()
+    students_username = User.objects.filter(id__in=pupils).values_list('username', flat=True).distinct()
+    if any(item in students_username for item in students_name):
+        students_username=[x for x in students_username if x not in students_name]
+        return render(request, "manager/test_result.html", {'students':students, 'students_username':students_username})

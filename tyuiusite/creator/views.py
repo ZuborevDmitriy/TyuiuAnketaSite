@@ -13,6 +13,9 @@ class CreateAnketa(CreateView):
     fields="__all__"
     template_name = "creator/anketa_create.html"
     success_url = reverse_lazy('creator:anketa-list')
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class UpdateAnketa(UpdateView):
     model = Anketa
@@ -44,7 +47,7 @@ class CreateQuestion(CreateView):
 
 class UpdateQuestion(UpdateView):
     model = Questions
-    fields="__all__"
+    form_class = QuestionForm
     template_name = "creator/question_update.html"
     def get_success_url(self):
         return reverse("creator:question-list", kwargs={'pk': self.kwargs['pk']})
@@ -77,7 +80,7 @@ class CreateAnswer(CreateView):
 
 class UpdateAnswer(UpdateView):
     model = Answers
-    fields="__all__"
+    form_class = AnswerForm
     template_name = "creator/answer_update.html"
     def get_success_url(self):
         return reverse("creator:answer-list", kwargs={'pk': self.kwargs['pk'],'question_id': self.kwargs['question_id']})
