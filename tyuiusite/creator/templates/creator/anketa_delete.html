@@ -6,7 +6,7 @@
 <li style="color:white">Роль: Создатель</li>
 <li style="color:white">Пользователь: {{request.user}}</li>
 <li>
-	<form style="margin-left:500px;margin-top:-32px" method="post" action="{% url 'users:logout' %}">
+	<form style="margin-left:600px;margin-top:-32px" method="post" action="{% url 'users:logout' %}">
 		{% csrf_token %}
 		<button class="logout" type="submit">Выйти</button>
 	</form>
