@@ -17,11 +17,10 @@
     {% for qu in questions %}
         <div style="background-color:rgb(0, 100, 140);border-color:rgb(0, 100, 140);color:white;" class="alert alert-warning">
             <h4>{{qu}}</h4>
+            <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'student:get-answer' survey.id qu.id%}" class="btn btn-warning">Ответить</a>
         </div>
     {% endfor %}
-    {% comment %} {% for qu in questions|slice:"0:1" %}
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="{% url 'student:get-result' qu.ank_id%}" class="create">Подвести итог</a>
-        </div>
-    {% endfor %} {% endcomment %}
-{% endblock content %}
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="{% url 'student:get-result' survey.id %}" class="create">Подвести итог</a>
+    </div>
+    {% endblock content %}

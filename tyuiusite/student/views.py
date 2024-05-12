@@ -16,18 +16,19 @@ def list(request):
     return render(request, "student/list.html", {"getlist": getlist})
 
 def questions_list(request, test_id):
-    survey_id = Survey.objects.filter(id=test_id).values_list('test', flat=True).distinct()
+    survey = Survey.objects.get(pk=test_id)
+    survey_id = Survey.objects.filter(pk=test_id).values_list('test_id', flat=True)
     questions = Questions.objects.filter(ank_id__in=survey_id)
-    return render(request, "student/question_list.html", {'questions':questions, 'survey':survey})
+    print(survey_id)
+    return render(request, "student/question_list.html", {'survey':survey, 'questions':questions})
 
 def answer_list(request, test_id, answ_id):
     answers = Answers.objects.get(quest_id=answ_id)
     return render(request, "student/answers_list.html", {'answers':answers})
 
-# Для ответов quest_id=answ_id
-
 def submit_answer(request, test_id, answ_id):
     answer_count = StudentAnswer.objects.filter(student=request.user, question_id=answ_id).exists()
+    survey_id = Survey.objects.filter(pk=test_id).values_list('test_id', flat=True)
     if answer_count:
         return redirect('student:tests-list')
     if request.method == "POST":
@@ -35,9 +36,9 @@ def submit_answer(request, test_id, answ_id):
         answer = get_object_or_404(Answers, quest_id=answ_id)
         correct_answer = answer.answer
         dynamic_url = f'http://127.0.0.1:8000/student/list/{test_id}'
-        if student_answer_text.upper() == correct_answer.upper():
+        if student_answer_text == correct_answer:
             student_answer = StudentAnswer.objects.create(
-                test_id = test_id,
+                test_id = survey_id,
                 question_id = answ_id,
                 student = request.user,
                 answer_text=student_answer_text,
@@ -46,7 +47,7 @@ def submit_answer(request, test_id, answ_id):
             student_answer.save()
         else:
             student_answer = StudentAnswer.objects.create(
-                test_id = test_id,
+                test_id = survey_id,
                 question_id = answ_id,
                 student = request.user,
                 answer_text=student_answer_text,
@@ -61,14 +62,13 @@ def submit_answer(request, test_id, answ_id):
     return render(request, 'student/submit_answer.html', data)
 
 def result(request, test_id):
-    current_user = request.user
-    correct_answer_count = StudentAnswer.objects.filter(student=current_user, test_id=test_id, right_answer=True).count()
-    question_count = Questions.objects.filter(ank_id=test_id).count()
-    getlist = Anketa.objects.filter(pk=test_id)
-    print(getlist)
+    survey = Survey.objects.get(pk=test_id)
+    survey_id = Survey.objects.filter(pk=test_id).values_list('test_id', flat=True)
+    correct_answer_count = StudentAnswer.objects.filter(test_id__in=survey_id, right_answer=True).count()
+    question_count = Questions.objects.filter(ank_id__in=survey_id).count()
     percent = int((correct_answer_count/question_count)*100)
     return render(request, 'student/result.html', {'correct_answer_count':correct_answer_count, 'question_count':question_count,
-                                                   'percent':percent, 'getlist':getlist})
+                                                   'percent':percent, 'survey':survey})
 
 def send_result(request, test_id):
     results_count = StudentResult.objects.filter(student=request.user, test=test_id).exists()
