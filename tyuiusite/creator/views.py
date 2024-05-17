@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import user_passes_test
 #     return redirect('creator:anketa-list')
 
 def list(request):
-    getlist = Anketa.objects.all()
+    current_user = request.user
+    getlist = Anketa.objects.filter(anketa_author=current_user)
     return render(request, "creator/list.html", {"getlist": getlist})
 
 class CreateAnketa(CreateView):
@@ -76,7 +77,7 @@ class CreateAnswer(CreateView):
     form_class = AnswerForm
     template_name = "creator/answer_create.html"
     def get_success_url(self):
-        return reverse("creator:answer-list", kwargs={'pk': self.kwargs['pk'],'question_id': self.kwargs['question_id']})
+        return reverse("creator:question-list", kwargs={'pk': self.kwargs['pk']})
     pk_url_kwarg = 'answer_id'
     def form_valid(self, form):
         form.instance.ank_id = self.kwargs['pk']

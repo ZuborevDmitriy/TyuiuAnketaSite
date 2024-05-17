@@ -9,7 +9,7 @@ class SurveyForm(ModelForm):
             'survey_title':TextInput(attrs={
                 'class':'form-control'
             }),
-            'test':SelectMultiple(attrs={
+            'test':Select(attrs={
                 'class':'form-control'
             }),
             'students':SelectMultiple(attrs={

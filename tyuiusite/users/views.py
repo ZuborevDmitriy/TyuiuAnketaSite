@@ -18,6 +18,8 @@ class LoginUser(LoginView):
             return reverse_lazy("manager:survey-list")
         elif user.groups.filter(name='Student').exists():
             return reverse_lazy("student:tests-list")
+        elif user.is_staff:
+            return reverse_lazy("creator:anketa-list")
         else:
             return super().get_success_url()
     

@@ -3,7 +3,7 @@
 {% block head-links %}
 <li><a href="/">Главная</a></li>
 <li><a href="{% url 'student:tests-list' %}">Тесты</a></li>
-<li style="color:white">Роль: Создатель</li>
+<li style="color:white">Роль: Студент</li>
 <li style="color:white">Пользователь: {{request.user}}</li>
 <li>
 	<form style="margin-left:600px;margin-top:-32px" method="post" action="{% url 'users:logout' %}">

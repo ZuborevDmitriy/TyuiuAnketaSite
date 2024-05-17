@@ -8,7 +8,8 @@ from student.models import StudentAnswer, StudentResult
 from django.contrib.auth.models import User
 
 def survey_list(request):
-    getsurvey = Survey.objects.all()
+    current_user = request.user
+    getsurvey = Survey.objects.filter(survey_author=current_user)
     return render(request, 'manager/survey_list.html', {"surveylist": getsurvey})
 
 class CreateSurvey(CreateView):
