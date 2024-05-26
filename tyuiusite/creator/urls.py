@@ -15,6 +15,6 @@ urlpatterns = [
     path("list/<int:pk>/<int:question_id>/update", views.UpdateQuestion.as_view(), name="question-update"),
     path("list/<int:pk>/<int:question_id>/delete", views.DeleteQuestion.as_view(), name="question-delete"),
     path("list/<int:pk>/<int:question_id>", views.answer_list, name="answer-list"),
-    path("list/<int:pk>/<int:question_id>/<int:answer_id>/update", views.UpdateAnswer.as_view(), name="answer-update"),
+    #path("list/<int:pk>/<int:question_id>/<int:answer_id>/update", views.UpdateAnswer.as_view(), name="answer-update"),
     path("list/<int:pk>/<int:question_id>/<int:answer_id>/delete", views.DeleteAnswer.as_view(), name="answer-delete"),
 ]

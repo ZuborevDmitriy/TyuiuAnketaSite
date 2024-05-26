@@ -20,7 +20,7 @@
         {% for an in answer %}
             <div style="background-color:rgb(0, 100, 140);border-color:rgb(0, 100, 140);color:white;" class="alert alert-warning">
                 <h4>Ответ:{{an.answer}}</h4>
-                <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:answer-update' an.ank_id an.quest_id an.id%}" class="btn btn-warning">Редактировать</a>
+                {% comment %} <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:answer-update' an.ank_id an.quest_id an.id%}" class="btn btn-warning">Редактировать</a> {% endcomment %}
                 <a style="background-color:rgb(0, 183, 255);border-color:rgb(0, 183, 255);color:black;" href="{% url 'creator:answer-delete' an.ank_id an.quest_id an.id%}" class="btn btn-danger">Удалить</a>
             </div>
         {% endfor %}
