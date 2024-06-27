@@ -75,8 +75,8 @@ def result(request, test_id):
     survey = Survey.objects.get(pk=test_id)
     survey_id = Survey.objects.filter(pk=test_id).values_list('test_id', flat=True)
     correct_answer_count = StudentAnswer.objects.filter(student_id=user_id, test_id__in=survey_id, right_answer=True).count()
-    question_count = Questions.objects.filter(ank_id__in=survey_id).count()
-    percent = int((correct_answer_count/question_count)*100)
+    question_count = StudentAnswer.objects.filter(student_id=user_id, test_id__in=survey_id).count()
+    percent = (correct_answer_count/question_count)*100
     return render(request, 'student/result.html', {'correct_answer_count':correct_answer_count, 'question_count':question_count,
                                                    'percent':percent, 'survey':survey})
 
@@ -90,7 +90,7 @@ def send_result(request, test_id):
         return redirect('student:tests-list')
     correct_answer_count = StudentAnswer.objects.filter(student=user_id, test = survey_id, right_answer=True).count()
     print(correct_answer_count)
-    question_count = Questions.objects.filter(ank_id=test_id).count()
+    question_count = StudentAnswer.objects.filter(student=user_id, test = survey_id).count()
     if correct_answer_count == 0:
         student_result = StudentResult.objects.create(
             test_id = test_id,
